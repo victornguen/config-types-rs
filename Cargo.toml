@@ -1,0 +1,20 @@
+[package]
+name = "config-types"
+repository = "https://github.com/victornguen/config-types-rs"
+version = "0.1.0"
+description = "A library which provides ergononic types for configuration files"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["configuration", "config-file", "setting"]
+categories = ["config"]
+include = [
+    "src/**/*.rs",
+    "Cargo.toml",
+    "Cargo.lock",
+    "README.md",
+    "LICENSE*"
+]
+
+[dependencies]
+regex = "1.11.1"
+serde = { version = "1.0.218", features = ["derive"] }
