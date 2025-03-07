@@ -2,7 +2,7 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Default)]
-pub struct ByteSizeConf(pub u64);
+pub struct ByteSizeConf(u64);
 
 impl ByteSizeConf {
     pub fn as_bytes(&self) -> u64 {
@@ -10,15 +10,27 @@ impl ByteSizeConf {
     }
 
     pub fn as_kilobytes(&self) -> u64 {
+        self.0 / 1000
+    }
+
+    pub fn as_kibibytes(&self) -> u64 {
         self.0 / 1024
     }
 
     pub fn as_megabytes(&self) -> u64 {
-        self.0 / 1024 / 1024
+        self.0 / 10u64.pow(6)
+    }
+
+    pub fn as_mebibytes(&self) -> u64 {
+        self.0 / 2u64.pow(20)
     }
 
     pub fn as_gigabytes(&self) -> u64 {
-        self.0 / 1024 / 1024 / 1024
+        self.0 / 10u64.pow(9)
+    }
+
+    pub fn as_gibibytes(&self) -> u64 {
+        self.0 / 2u64.pow(30)
     }
 
     fn to_string(&self) -> String {

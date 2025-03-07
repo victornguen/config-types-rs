@@ -1,4 +1,4 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default)]
 pub struct SecretConf(String);
@@ -20,6 +20,15 @@ impl<'de> Deserialize<'de> for SecretConf {
     {
         let s = String::deserialize(deserializer)?;
         Ok(SecretConf(s))
+    }
+}
+
+impl Serialize for SecretConf {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        self.to_string().serialize(serializer)
     }
 }
 
