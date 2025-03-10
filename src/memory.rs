@@ -5,6 +5,34 @@ use serde::{Deserialize, Serialize};
 pub struct ByteSizeConf(u64);
 
 impl ByteSizeConf {
+    pub fn of_bytes(bytes: u64) -> Self {
+        Self(bytes)
+    }
+
+    pub fn of_kilobytes(kilobytes: u64) -> Self {
+        Self(kilobytes * 1000)
+    }
+
+    pub fn of_kibibytes(kibibytes: u64) -> Self {
+        Self(kibibytes * 1024)
+    }
+
+    pub fn of_megabytes(megabytes: u64) -> Self {
+        Self(megabytes * 10u64.pow(6))
+    }
+
+    pub fn of_mebibytes(mebibytes: u64) -> Self {
+        Self(mebibytes * 2u64.pow(20))
+    }
+
+    pub fn of_gigabytes(gigabytes: u64) -> Self {
+        Self(gigabytes * 10u64.pow(9))
+    }
+
+    pub fn of_gibibytes(gibibytes: u64) -> Self {
+        Self(gibibytes * 2u64.pow(30))
+    }
+
     pub fn as_bytes(&self) -> u64 {
         self.0
     }
